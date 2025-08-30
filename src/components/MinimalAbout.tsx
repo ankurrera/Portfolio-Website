@@ -39,7 +39,7 @@ const MinimalAbout = () => {
           >
             <div className="space-y-6">
               <p className="text-lg font-light text-foreground leading-relaxed">
-                I'm a passionate full-stack developer with over 5 years of experience 
+                I'm a passionate full-stack developer with over 1 years of experience 
                 creating digital solutions that matter.
               </p>
               
@@ -59,13 +59,13 @@ const MinimalAbout = () => {
             {/* Key Stats */}
             <div className="grid grid-cols-2 gap-8 pt-8 border-t border-border">
               <div>
-                <div className="text-2xl font-light text-foreground mb-1">50+</div>
+                <div className="text-2xl font-light text-foreground mb-1">10+</div>
                 <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
                   Projects Delivered
                 </div>
               </div>
               <div>
-                <div className="text-2xl font-light text-foreground mb-1">15+</div>
+                <div className="text-2xl font-light text-foreground mb-1">9+</div>
                 <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
                   Happy Clients
                 </div>
@@ -116,9 +116,9 @@ const MinimalAbout = () => {
               <h4 className="text-sm font-medium text-foreground">Experience</h4>
               <div className="space-y-4">
                 {[
-                  { role: 'Senior Full Stack Developer', company: 'Tech Innovations Inc', year: '2023 - Present' },
-                  { role: 'Full Stack Developer', company: 'Digital Solutions Co', year: '2021 - 2023' },
-                  { role: 'Frontend Developer', company: 'Creative Agency', year: '2019 - 2021' }
+                  { role: 'Website Developer', company: 'Digital Indian pvt Solution', year: '08/2025 - Present' },
+                  { role: 'Google Map 360 Photographer', company: 'Instanovate', year: '02/2025 - 03/2025' },
+                  { role: 'Cinematography/ Editing', company: 'Freelance', year: '2019 - Current' }
                 ].map((exp, index) => (
                   <motion.div
                     key={index}

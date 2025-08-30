@@ -18,21 +18,21 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'alex.chen@example.com',
-      href: 'mailto:alex.chen@example.com',
+      value: 'ankurr.era@gmail.com',
+      href: 'mailto:ankurr.era@gmail.com',
       color: 'primary'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
+      value: '+919002278769',
+      href: 'tel:+919002278769',
       color: 'secondary'
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'San Francisco, CA',
+      label: 'India',
+      value: 'Kolkata, WB',
       href: '#',
       color: 'accent'
     }
@@ -163,7 +163,7 @@ const ContactSection = () => {
                         type="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="your.email@example.com"
+                        placeholder="ankurr.era@example.com"
                         className="bg-surface-glass border-primary/20 focus:border-primary text-foreground placeholder:text-muted-foreground"
                         required
                       />

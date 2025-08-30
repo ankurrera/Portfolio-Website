@@ -28,13 +28,13 @@ const MinimalContact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'alex.chen@example.com',
-      href: 'mailto:alex.chen@example.com'
+      value: 'ankurr.era@gamil.com',
+      href: 'mailto:ankurr.era@gamil.com'
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'San Francisco, CA',
+      label: 'India',
+      value: 'Kolkata, WB',
       href: '#'
     }
   ];

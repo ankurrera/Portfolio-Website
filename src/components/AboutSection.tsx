@@ -16,8 +16,8 @@ const AboutSection = () => {
   const experience = [
     {
       year: '2023 - Present',
-      title: 'Senior Full Stack Developer',
-      company: 'TechCorp Innovation',
+      title: 'Web Developer',
+      company: 'Digital Indian Pvt Limited',
       description: 'Leading development of next-generation web applications using cutting-edge technologies.',
       highlights: ['Led team of 8 developers', 'Increased performance by 300%', 'Implemented AI features']
     },
@@ -30,7 +30,7 @@ const AboutSection = () => {
     },
     {
       year: '2019 - 2021',
-      title: 'Frontend Developer',
+      title: 'Video And Photo Editor',
       company: 'Creative Agency',
       description: 'Created responsive and interactive user interfaces for diverse client portfolio.',
       highlights: ['Designed 50+ UI components', 'Improved user engagement by 40%', 'Won design awards']

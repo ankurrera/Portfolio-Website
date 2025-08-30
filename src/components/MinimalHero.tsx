@@ -25,7 +25,7 @@ const MinimalHero = () => {
               Full Stack Developer
             </div>
             <h1 className="text-display font-heading font-light text-foreground">
-              Alex
+              Ankur
             </h1>
           </div>
           

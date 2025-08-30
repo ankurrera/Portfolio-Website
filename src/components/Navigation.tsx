@@ -46,7 +46,7 @@ const Navigation = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Cyber.Portfolio
+          Ankur Bag.Portfolio
         </motion.div>
 
         {/* Desktop Navigation */}

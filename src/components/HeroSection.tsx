@@ -33,7 +33,7 @@ const HeroSection = () => {
               }}
               transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
             >
-              Alex Chen
+              Ankur Bag
             </motion.h1>
             <motion.p 
               className="text-2xl md:text-3xl text-secondary font-light tracking-wider"

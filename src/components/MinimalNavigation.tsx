@@ -45,7 +45,7 @@ const MinimalNavigation = () => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          Alex Chen
+          Ankur Bag
         </motion.div>
 
         {/* Desktop Navigation */}

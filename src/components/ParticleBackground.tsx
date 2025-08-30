@@ -5,6 +5,7 @@ import * as random from 'maath/random/dist/maath-random.esm';
 import { Object3D, Vector3 } from 'three';
 
 const Particles = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ref = useRef<any>();
   const sphere = random.inSphere(new Float32Array(2000), { radius: 1.5 });
 
@@ -32,6 +33,7 @@ const Particles = () => {
 };
 
 const FloatingGeometry = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const meshRef = useRef<any>();
   
   useFrame((state) => {
