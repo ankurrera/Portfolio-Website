@@ -1,41 +1,38 @@
 import { motion } from 'framer-motion';
-import ParticleBackground from '@/components/ParticleBackground';
-import Navigation from '@/components/Navigation';
-import HeroSection from '@/components/HeroSection';
-import AboutSection from '@/components/AboutSection';
-import ProjectSection from '@/components/ProjectSection';
-import ContactSection from '@/components/ContactSection';
+import MinimalNavigation from '@/components/MinimalNavigation';
+import MinimalHero from '@/components/MinimalHero';
+import MinimalProjects from '@/components/MinimalProjects';
+import MinimalAbout from '@/components/MinimalAbout';
+import MinimalContact from '@/components/MinimalContact';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative">
-      {/* 3D Particle Background */}
-      <ParticleBackground />
-      
+    <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <Navigation />
+      <MinimalNavigation />
       
       {/* Main Content */}
-      <main className="relative z-10">
-        <HeroSection />
-        <AboutSection />
-        <ProjectSection />
-        <ContactSection />
+      <main>
+        <MinimalHero />
+        <MinimalProjects />
+        <MinimalAbout />
+        <MinimalContact />
       </main>
       
       {/* Footer */}
-      <footer className="relative z-10 py-12 border-t border-primary/20">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between">
+      <footer className="py-12 border-t border-border/50 bg-muted/10">
+        <div className="max-w-content mx-auto px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <motion.div 
-              className="text-2xl font-heading font-bold gradient-text mb-4 md:mb-0"
-              whileHover={{ scale: 1.05 }}
+              className="text-lg font-heading font-medium text-foreground"
+              whileHover={{ scale: 1.02 }}
             >
-              Cyber.Portfolio
+              Alex Chen
             </motion.div>
-            <div className="text-muted-foreground text-center md:text-right">
-              <p>&copy; 2024 Alex Chen. All rights reserved.</p>
-              <p className="text-sm mt-1">Built with cutting-edge technology & passion</p>
+            
+            <div className="flex items-center gap-8 text-xs font-mono text-muted-foreground">
+              <div>&copy; 2024 All rights reserved</div>
+              <div>Made with precision & passion</div>
             </div>
           </div>
         </div>
