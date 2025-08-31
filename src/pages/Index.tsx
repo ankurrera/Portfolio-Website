@@ -1,38 +1,34 @@
 import { motion } from 'framer-motion';
-import MinimalNavigation from '@/components/MinimalNavigation';
-import MinimalHero from '@/components/MinimalHero';
-import MinimalProjects from '@/components/MinimalProjects';
-import MinimalAbout from '@/components/MinimalAbout';
-import MinimalContact from '@/components/MinimalContact';
+import AstraHero from '@/components/AstraHero';
+import AstraAbout from '@/components/AstraAbout';
+import AstraServices from '@/components/AstraServices';
+import AstraContact from '@/components/AstraContact';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <MinimalNavigation />
-      
+    <div className="min-h-screen bg-space-light">
       {/* Main Content */}
       <main>
-        <MinimalHero />
-        <MinimalProjects />
-        <MinimalAbout />
-        <MinimalContact />
+        <AstraHero />
+        <AstraAbout />
+        <AstraServices />
+        <AstraContact />
       </main>
       
       {/* Footer */}
-      <footer className="py-12 border-t border-border/50 bg-muted/10">
-        <div className="max-w-content mx-auto px-8">
+      <footer className="bg-space-dark border-t border-white/10 py-12">
+        <div className="max-w-7xl mx-auto px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <motion.div 
-              className="text-lg font-heading font-medium text-foreground"
+              className="text-2xl font-black text-white"
               whileHover={{ scale: 1.02 }}
             >
-              Alex Chen
+              Astra<sup className="text-sm font-light">®</sup>
             </motion.div>
             
-            <div className="flex items-center gap-8 text-xs font-mono text-muted-foreground">
-              <div>&copy; 2024 All rights reserved</div>
-              <div>Made with precision & passion</div>
+            <div className="flex items-center gap-8 text-xs font-mono text-white/50">
+              <div>&copy; 2024 Astra Creative Agency</div>
+              <div>Made in Framer</div>
             </div>
           </div>
         </div>
