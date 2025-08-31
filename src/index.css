@@ -62,8 +62,8 @@ All colors are HSL for consistent theming.
     --radius-lg: 0.5rem;
     --radius-full: 9999px;
     
-    /* Typography */
-    --font-heading: 'Inter', system-ui, sans-serif;
+    /* Typography - Matching Astra reference */
+    --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     
@@ -139,20 +139,44 @@ All colors are HSL for consistent theming.
     @apply bg-surface-dark text-primary-foreground;
   }
   
-  /* Typography Hierarchy */
+  /* Typography Hierarchy - Astra Style */
   .text-display {
-    font-size: clamp(3rem, 8vw, 8rem);
-    font-weight: 300;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
+    font-size: clamp(4rem, 12vw, 12rem);
+    font-weight: 700;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-family: var(--font-heading);
   }
   
   .text-hero {
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+    font-size: clamp(2.5rem, 6vw, 6rem);
+    font-weight: 600;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    font-family: var(--font-heading);
   }
+
+  /* Typing Animation */
+  .typing-animation {
+    overflow: hidden;
+    border-right: 2px solid;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  /* Fade Up Animation */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+
+  /* Stagger Animation Delays */
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
   
   .text-section {
     font-size: clamp(1.5rem, 3vw, 2.5rem);
@@ -207,6 +231,35 @@ All colors are HSL for consistent theming.
   from {
     opacity: 0;
     transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: hsl(var(--foreground));
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
