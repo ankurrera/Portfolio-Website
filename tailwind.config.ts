@@ -55,11 +55,6 @@ export default {
 				surface: {
 					dark: 'hsl(var(--surface-dark))',
 					light: 'hsl(var(--surface-light))'
-				},
-				space: {
-					dark: 'hsl(var(--space-dark))',
-					light: 'hsl(var(--space-light))',
-					accent: 'hsl(var(--space-accent))'
 				}
 			},
 			boxShadow: {

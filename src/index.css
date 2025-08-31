@@ -2,50 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Astra-Inspired Space Portfolio Design System
-Modern space agency aesthetic with split-screen layout, 3D elements, and futuristic typography.
+/* Minimal Professional Portfolio Design System
+Inspired by clean, sophisticated aesthetics with subtle space theme.
 All colors are HSL for consistent theming.
 */
 
 @layer base {
   :root {
-    /* Space-Inspired Color Palette */
-    --background: 0 0% 98%; /* Light background for split */
+    /* Minimal Monochromatic Palette */
+    --background: 0 0% 98%;
     --foreground: 0 0% 8%;
-    
-    /* Split Screen Colors */
-    --space-dark: 0 0% 4%; /* Deep space black */
-    --space-light: 0 0% 98%; /* Clean white */
-    --space-accent: 220 100% 70%; /* Bright blue accent */
     
     /* Surface Colors */
     --card: 0 0% 100%;
     --card-foreground: 0 0% 8%;
-    --surface-dark: 0 0% 4%;
+    --surface-dark: 0 0% 5%;
     --surface-light: 0 0% 98%;
     
     /* Interactive Elements */
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 8%;
     
-    /* Brand Colors */
+    /* Accent Colors - Minimal */
     --primary: 0 0% 8%; /* Deep Black */
     --primary-foreground: 0 0% 98%;
     
     --secondary: 0 0% 95%; /* Light Gray */
     --secondary-foreground: 0 0% 8%;
     
-    --accent: 220 100% 70%; /* Space Blue */
-    --accent-foreground: 0 0% 8%;
+    --accent: 0 0% 15%; /* Dark Gray */
+    --accent-foreground: 0 0% 98%;
     
-    /* UI Colors */
+    /* Subtle UI Colors */
     --muted: 0 0% 92%;
     --muted-foreground: 0 0% 45%;
     
     /* Interactive States */
-    --border: 0 0% 88%;
+    --border: 0 0% 90%;
     --input: 0 0% 95%;
-    --ring: 220 100% 70%;
+    --ring: 0 0% 8%;
     
     /* Status Colors */
     --destructive: 0 84% 60%;
@@ -53,20 +48,18 @@ All colors are HSL for consistent theming.
     --success: 120 40% 40%;
     --warning: 45 80% 55%;
     
-    /* Space Effects */
-    --space-glow: 0 0 20px hsl(220 100% 70% / 0.5);
-    --subtle-shadow: 0 2px 8px hsl(0 0% 0% / 0.08);
-    --card-shadow: 0 8px 32px hsl(0 0% 0% / 0.12);
-    --hover-shadow: 0 16px 64px hsl(0 0% 0% / 0.16);
+    /* Subtle Effects */
+    --subtle-shadow: 0 1px 3px hsl(0 0% 0% / 0.1);
+    --card-shadow: 0 4px 16px hsl(0 0% 0% / 0.08);
+    --hover-shadow: 0 8px 32px hsl(0 0% 0% / 0.12);
     
     /* Animation Timings */
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.15s ease-out;
-    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
     /* Spacing & Sizing */
-    --radius: 0.5rem;
-    --radius-lg: 0.75rem;
+    --radius: 0.375rem;
+    --radius-lg: 0.5rem;
     --radius-full: 9999px;
     
     /* Typography */
@@ -76,7 +69,7 @@ All colors are HSL for consistent theming.
     
     /* Layout */
     --header-height: 80px;
-    --content-width: 1400px;
+    --content-width: 1200px;
     --section-padding: 120px;
   }
 }
@@ -118,144 +111,84 @@ All colors are HSL for consistent theming.
 }
 
 @layer components {
-  /* Space Card Styles */
-  .space-card {
+  /* Clean Card Style */
+  .minimal-card {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
     box-shadow: var(--card-shadow);
     transition: var(--transition-smooth);
-    border-radius: var(--radius-lg);
   }
   
-  .space-card:hover {
+  .minimal-card:hover {
     box-shadow: var(--hover-shadow);
-    transform: translateY(-8px);
+    transform: translateY(-2px);
   }
   
-  /* Split Screen Layout - Astra Style */
-  .astra-split {
+  /* Split Screen Layout */
+  .split-screen {
     display: grid;
     grid-template-columns: 1fr 1fr;
     min-height: 100vh;
-    position: relative;
   }
   
-  .astra-light {
-    background: hsl(var(--space-light));
-    color: hsl(var(--foreground));
+  .split-light {
+    @apply bg-surface-light text-foreground;
   }
   
-  .astra-dark {
-    background: hsl(var(--space-dark));
-    color: hsl(var(--primary-foreground));
-    position: relative;
-    overflow: hidden;
+  .split-dark {
+    @apply bg-surface-dark text-primary-foreground;
   }
   
-  /* Typography Hierarchy - Bold & Futuristic */
-  .text-astra-hero {
-    font-size: clamp(4rem, 12vw, 12rem);
-    font-weight: 900;
-    line-height: 0.8;
-    letter-spacing: -0.04em;
-    font-family: var(--font-heading);
-  }
-  
+  /* Typography Hierarchy */
   .text-display {
     font-size: clamp(3rem, 8vw, 8rem);
-    font-weight: 800;
+    font-weight: 300;
     line-height: 0.9;
     letter-spacing: -0.02em;
   }
   
   .text-hero {
     font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 700;
+    font-weight: 400;
     line-height: 1.1;
     letter-spacing: -0.01em;
   }
   
   .text-section {
     font-size: clamp(1.5rem, 3vw, 2.5rem);
-    font-weight: 600;
+    font-weight: 300;
     line-height: 1.2;
   }
   
-  /* Animated Text Effects */
-  .typing-animation {
-    overflow: hidden;
-    border-right: 2px solid hsl(var(--accent));
-    white-space: nowrap;
-    animation: typing 3s steps(20, end), blink 0.75s step-end infinite;
+  /* Subtle Animations */
+  .fade-in {
+    animation: fadeIn 0.8s ease-out;
   }
   
-  .fade-up {
-    animation: fadeUp 0.8s ease-out forwards;
-    opacity: 0;
-    transform: translateY(30px);
+  .slide-up {
+    animation: slideUp 0.6s ease-out;
   }
   
-  .fade-up.delay-1 { animation-delay: 0.2s; }
-  .fade-up.delay-2 { animation-delay: 0.4s; }
-  .fade-up.delay-3 { animation-delay: 0.6s; }
-  
-  /* Space Background Effects */
-  .space-stars {
-    background-image: 
-      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 1px, transparent 1px),
-      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 1px, transparent 1px),
-      radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 2px, transparent 2px),
-      radial-gradient(circle at 90% 70%, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 300px 300px, 200px 200px, 400px 400px, 250px 250px;
-    animation: twinkle 8s linear infinite;
-  }
-  
-  .space-nebula {
-    background: radial-gradient(ellipse at center, 
-      rgba(138, 92, 246, 0.1) 0%, 
-      rgba(59, 130, 246, 0.05) 50%, 
-      transparent 100%);
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  /* Glowing Button Effects */
-  .glow-button {
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 20px hsl(var(--accent) / 0.3);
+  /* Minimal Hover Effects */
+  .hover-lift {
     transition: var(--transition-smooth);
   }
   
-  .glow-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
+  .hover-lift:hover {
+    transform: translateY(-4px);
   }
   
-  .glow-button:hover::before {
-    left: 100%;
+  /* Clean Borders */
+  .border-minimal {
+    border: 1px solid hsl(var(--border));
   }
   
-  .glow-button:hover {
-    box-shadow: 0 0 30px hsl(var(--accent) / 0.6);
-    transform: translateY(-2px);
-  }
-  
-  /* Service List Styles */
-  .service-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid hsl(var(--border));
-    transition: var(--transition-smooth);
-  }
-  
-  .service-item:hover {
-    padding-left: 1rem;
-    color: hsl(var(--accent));
+  /* Space Theme Elements */
+  .star-field {
+    background-image: radial-gradient(circle at 20% 80%, hsl(0 0% 100% / 0.1) 1px, transparent 1px),
+                      radial-gradient(circle at 80% 20%, hsl(0 0% 100% / 0.15) 1px, transparent 1px),
+                      radial-gradient(circle at 40% 40%, hsl(0 0% 100% / 0.1) 2px, transparent 2px);
+    background-size: 200px 200px, 300px 300px, 150px 150px;
   }
 }
 
@@ -263,17 +196,6 @@ All colors are HSL for consistent theming.
   from {
     opacity: 0;
     transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -290,25 +212,4 @@ All colors are HSL for consistent theming.
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes blink {
-  from, to { border-color: transparent }
-  50% { border-color: hsl(var(--accent)) }
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-10px) rotate(1deg); }
-  66% { transform: translateY(5px) rotate(-1deg); }
 }
