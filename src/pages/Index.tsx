@@ -1,38 +1,36 @@
 import { motion } from 'framer-motion';
-import MinimalNavigation from '@/components/MinimalNavigation';
-import MinimalHero from '@/components/MinimalHero';
-import MinimalProjects from '@/components/MinimalProjects';
-import MinimalAbout from '@/components/MinimalAbout';
+import AstraHero from '@/components/AstraHero';
+import AstraStats from '@/components/AstraStats';
+import AstraServices from '@/components/AstraServices';
+import AstraFounder from '@/components/AstraFounder';
 import MinimalContact from '@/components/MinimalContact';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <MinimalNavigation />
-      
+    <div className="min-h-screen bg-background">      
       {/* Main Content */}
       <main>
-        <MinimalHero />
-        <MinimalProjects />
-        <MinimalAbout />
+        <AstraHero />
+        <AstraStats />
+        <AstraServices />
+        <AstraFounder />
         <MinimalContact />
       </main>
       
       {/* Footer */}
       <footer className="py-12 border-t border-border/50 bg-muted/10">
-        <div className="max-w-content mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <motion.div 
               className="text-lg font-heading font-medium text-foreground"
               whileHover={{ scale: 1.02 }}
             >
-              Alex Chen
+              Astra Creative Agency
             </motion.div>
             
             <div className="flex items-center gap-8 text-xs font-mono text-muted-foreground">
               <div>&copy; 2024 All rights reserved</div>
-              <div>Made with precision & passion</div>
+              <div>Made in Framer</div>
             </div>
           </div>
         </div>
