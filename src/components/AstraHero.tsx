@@ -2,10 +2,46 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowUpRight, Minus } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Sphere, Float, OrbitControls } from '@react-three/drei';
+
+// Space Objects Component
+const SpaceObjects = () => {
+  return (
+    <>
+      {/* Main Large Sphere */}
+      <Float speed={1} rotationIntensity={0.1} floatIntensity={0.2}>
+        <Sphere args={[2, 32, 32]} position={[0, 0, 0]}>
+          <meshStandardMaterial color="#1a1a1a" roughness={0.3} metalness={0.8} />
+        </Sphere>
+      </Float>
+
+      {/* Smaller Floating Sphere */}
+      <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.3}>
+        <Sphere args={[0.3, 16, 16]} position={[3, -1, -1]}>
+          <meshStandardMaterial color="#333333" roughness={0.2} metalness={0.9} />
+        </Sphere>
+      </Float>
+
+      {/* Tiny Accent Spheres */}
+      <Float speed={2} rotationIntensity={0.3} floatIntensity={0.4}>
+        <Sphere args={[0.1, 8, 8]} position={[-2, 1, 1]}>
+          <meshStandardMaterial color="#666666" />
+        </Sphere>
+      </Float>
+
+      {/* Lighting */}
+      <ambientLight intensity={0.2} />
+      <pointLight position={[10, 10, 10]} intensity={0.5} />
+      <pointLight position={[-10, -10, -5]} intensity={0.3} color="#4169E1" />
+    </>
+  );
+};
 
 const AstraHero = () => {
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState([]);
   const fullText = 'Astra';
+  const [showCursor, setShowCursor] = useState(true);
   
   const scrollToWork = () => {
     const element = document.querySelector('#services');
@@ -17,13 +53,15 @@ const AstraHero = () => {
   useEffect(() => {
     let currentIndex = 0;
     const timer = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayText(fullText.slice(0, currentIndex));
+      if (currentIndex < fullText.length) {
+        setDisplayText(prev => [...prev, fullText[currentIndex]]);
         currentIndex++;
       } else {
         clearInterval(timer);
+        // Cursor blink after typing complete
+        setTimeout(() => setShowCursor(false), 1000);
       }
-    }, 200);
+    }, 150);
 
     return () => clearInterval(timer);
   }, []);
@@ -56,15 +94,37 @@ const AstraHero = () => {
               key={service}
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+              transition={{ duration: 0.6, delay: 0.5 + index * 0.15 }}
               className="flex items-center justify-between py-4 border-b border-border/30 group cursor-pointer"
             >
-              <span className="text-lg font-medium text-foreground group-hover:text-primary transition-colors">
-                {service}
-              </span>
+              <motion.span 
+                className="text-lg font-medium text-foreground group-hover:text-primary transition-colors overflow-hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 + index * 0.15 }}
+              >
+                {service.split('').map((char, charIndex) => (
+                  <motion.span
+                    key={charIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.3, 
+                      delay: 0.8 + index * 0.15 + charIndex * 0.02,
+                      ease: "easeOut"
+                    }}
+                    className="inline-block"
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </motion.span>
+                ))}
+              </motion.span>
               <motion.div
                 className="text-foreground/60 group-hover:text-foreground transition-colors"
                 whileHover={{ x: 4 }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 1.0 + index * 0.15 }}
               >
                 <Minus className="w-6 h-6" />
               </motion.div>
@@ -104,18 +164,12 @@ const AstraHero = () => {
           </Button>
         </motion.div>
 
-        {/* 3D Spline Model */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-60">
-          <div className="w-full h-full max-w-2xl max-h-2xl">
-            <iframe 
-              src='https://my.spline.design/neurons-zewxjmBKNIJOWtZUfvuaz5c6/' 
-              frameBorder='0' 
-              width='100%' 
-              height='100%'
-              className="rounded-lg"
-              style={{ minHeight: '600px' }}
-            />
-          </div>
+        {/* 3D Space Objects */}
+        <div className="absolute inset-0 opacity-70">
+          <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
+            <SpaceObjects />
+            <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
+          </Canvas>
         </div>
 
         {/* Main Content */}
@@ -129,23 +183,51 @@ const AstraHero = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
+              transition={{ duration: 0.6, delay: 1.8 }}
               className="text-right mb-8"
             >
               <div className="text-sm text-white/60 mb-2">Reach out to start</div>
               <div className="text-sm text-white/60">your project</div>
             </motion.div>
 
-            <motion.h2 
+            <motion.div 
               className="text-hero font-heading text-white"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 2.0 }}
             >
-              Space of Creative
+              {'Space of Creative'.split('').map((char, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.4, 
+                    delay: 2.1 + index * 0.03,
+                    ease: "easeOut"
+                  }}
+                  className="inline-block"
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
               <br />
-              Solutions
-            </motion.h2>
+              {'Solutions'.split('').map((char, index) => (
+                <motion.span
+                  key={index + 100}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.4, 
+                    delay: 2.6 + index * 0.03,
+                    ease: "easeOut"
+                  }}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.div>
           </div>
         </motion.div>
 
@@ -173,26 +255,78 @@ const AstraHero = () => {
       {/* Large Astra Title Overlay */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
         <motion.h1 
-          className="text-astra-title font-heading text-foreground/80"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.5 }}
+          className="text-astra-title font-heading text-foreground/90"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
         >
-          {displayText}
-          <span className="border-r-4 border-foreground/80 animate-pulse ml-2"></span>
+          {displayText.map((char, index) => (
+            <motion.span
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: 0.8 + index * 0.1,
+                ease: [0.6, 0.01, -0.05, 0.95]
+              }}
+              className="inline-block"
+            >
+              {char}
+            </motion.span>
+          ))}
+          {showCursor && (
+            <motion.span 
+              className="inline-block border-r-4 border-foreground/90 ml-2"
+              animate={{ opacity: [1, 0] }}
+              transition={{ duration: 0.8, repeat: Infinity }}
+            />
+          )}
         </motion.h1>
       </div>
 
-      {/* Subtitle */}
+        {/* Subtitle */}
       <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center pointer-events-none z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
+          transition={{ duration: 0.8, delay: 3.5 }}
           className="space-y-2"
         >
-          <div className="text-lg font-medium text-foreground/60">Full-service</div>
-          <div className="text-lg font-medium text-foreground/60">Creative Agency</div>
+          <motion.div className="text-lg font-medium text-foreground/60">
+            {'Full-service'.split('').map((char, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.3, 
+                  delay: 3.6 + index * 0.02,
+                  ease: "easeOut"
+                }}
+                className="inline-block"
+              >
+                {char === '-' ? '-' : char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
+          </motion.div>
+          <motion.div className="text-lg font-medium text-foreground/60">
+            {'Creative Agency'.split('').map((char, index) => (
+              <motion.span
+                key={index + 100}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.3, 
+                  delay: 3.9 + index * 0.02,
+                  ease: "easeOut"
+                }}
+                className="inline-block"
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     </section>
