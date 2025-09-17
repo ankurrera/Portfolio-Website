@@ -73,11 +73,6 @@ All colors are HSL for consistent theming.
     --section-padding: 120px;
   }
 }
-@layer utilities {
-  .border-border {
-    border-color: #e5e7eb;
-  }
-}
 
 @layer base {
   * {
