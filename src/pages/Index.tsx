@@ -4,10 +4,8 @@ import MinimalHero from '@/components/MinimalHero';
 import MinimalProjects from '@/components/MinimalProjects';
 import MinimalAbout from '@/components/MinimalAbout';
 import MinimalContact from '@/components/MinimalContact';
-
 const Index = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Navigation */}
       <MinimalNavigation />
       
@@ -23,12 +21,9 @@ const Index = () => {
       <footer className="py-12 border-t border-border/50 bg-muted/10">
         <div className="max-w-content mx-auto px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <motion.div 
-              className="text-lg font-heading font-medium text-foreground"
-              whileHover={{ scale: 1.02 }}
-            >
-              Alex Chen
-            </motion.div>
+            <motion.div className="text-lg font-heading font-medium text-foreground" whileHover={{
+            scale: 1.02
+          }}>Ankur Bag</motion.div>
             
             <div className="flex items-center gap-8 text-xs font-mono text-muted-foreground">
               <div>&copy; 2024 All rights reserved</div>
@@ -37,8 +32,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
