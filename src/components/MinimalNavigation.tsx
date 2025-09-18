@@ -32,7 +32,7 @@ const MinimalNavigation = () => {
   return (
     <motion.nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'glass-nav' : 'bg-transparent'
+        scrolled ? 'bg-background/95 backdrop-blur-md border-b border-border' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -41,7 +41,7 @@ const MinimalNavigation = () => {
       <div className="max-w-content mx-auto px-8 py-6 flex items-center justify-between">
         {/* Logo */}
         <motion.div 
-          className="text-xl font-heading font-medium gradient-text"
+          className="text-xl font-heading font-medium text-foreground"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -79,7 +79,7 @@ const MinimalNavigation = () => {
       {/* Mobile Navigation */}
       {isOpen && (
         <motion.div 
-          className="md:hidden glass-dark backdrop-blur-md border-t border-border/20"
+          className="md:hidden bg-background/98 backdrop-blur-md border-t border-border"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}

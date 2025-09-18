@@ -81,46 +81,35 @@ const MinimalProjects = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <Card className="glass-card border-0 shadow-none bg-transparent hover:glass-card transition-all duration-500">
+              <Card className="minimal-card border-0 shadow-none bg-transparent hover:bg-card/50 transition-all duration-500">
                 <CardContent className="p-0">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center py-12 border-b border-border/50">
                     {/* Project Number */}
                     <div className="order-1 lg:order-1">
-                      <motion.div 
-                        className="text-6xl font-heading font-light text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                      >
+                      <div className="text-6xl font-heading font-light text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors">
                         {project.id}
-                      </motion.div>
+                      </div>
                     </div>
 
                     {/* Project Info */}
                     <div className="order-3 lg:order-2 space-y-4">
                       <div>
-                        <motion.h3 
-                          className="text-xl font-heading font-medium gradient-text mb-2"
-                          whileHover={{ scale: 1.02 }}
-                        >
+                        <h3 className="text-xl font-heading font-medium text-foreground mb-2 group-hover:text-primary transition-colors">
                           {project.title}
-                        </motion.h3>
+                        </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
                           {project.description}
                         </p>
                       </div>
                       
                       <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech, techIndex) => (
-                          <motion.span 
+                        {project.tech.map((tech) => (
+                          <span 
                             key={tech} 
-                            className="text-xs font-mono text-muted-foreground/60 px-2 py-1 glass rounded-full"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: techIndex * 0.1 }}
-                            whileHover={{ scale: 1.05 }}
+                            className="text-xs font-mono text-muted-foreground/60 px-2 py-1 bg-muted/30 rounded"
                           >
                             {tech}
-                          </motion.span>
+                          </span>
                         ))}
                       </div>
                     </div>

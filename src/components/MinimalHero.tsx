@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
-import TextReveal from './TextReveal';
 
 const MinimalHero = () => {
   const scrollToWork = () => {
@@ -22,46 +21,24 @@ const MinimalHero = () => {
           className="space-y-8"
         >
           <div className="space-y-4">
-            <motion.div 
-              className="text-xs font-mono tracking-widest text-muted-foreground uppercase"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
+            <div className="text-xs font-mono tracking-widest text-muted-foreground uppercase">
               Full Stack Developer
-            </motion.div>
-            <motion.h1 
-              className="text-display font-heading font-light gradient-text"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
+            </div>
+            <h1 className="text-display font-heading font-light text-foreground">
               Ankur
-            </motion.h1>
+            </h1>
           </div>
           
           <div className="space-y-6">
-            <motion.p 
-              className="text-lg font-light text-muted-foreground max-w-md leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <TextReveal delay={0.8}>
-                Crafting digital experiences with precision, creativity, and a passion for clean code.
-              </TextReveal>
-            </motion.p>
+            <p className="text-lg font-light text-muted-foreground max-w-md leading-relaxed">
+              Crafting digital experiences with precision, creativity, and a passion for clean code.
+            </p>
             
-            <motion.div 
-              className="flex items-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-            >
+            <div className="flex items-center gap-4">
               <Button 
                 onClick={scrollToWork}
                 variant="minimal" 
-                className="group interactive-hover"
+                className="group"
               >
                 View Work
                 <motion.div
@@ -72,7 +49,7 @@ const MinimalHero = () => {
                   →
                 </motion.div>
               </Button>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
       </div>
@@ -86,64 +63,40 @@ const MinimalHero = () => {
           className="text-right space-y-8 max-w-md"
         >
           <div className="space-y-4">
-            <motion.h2 
-              className="text-hero font-heading font-light glow-text"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
+            <h2 className="text-hero font-heading font-light text-primary-foreground">
               Creative
               <br />
               Solutions
-            </motion.h2>
+            </h2>
           </div>
           
           <div className="space-y-6">
-            <motion.div 
-              className="grid grid-cols-3 gap-8 text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="interactive-hover"
-              >
+            <div className="grid grid-cols-3 gap-8 text-center">
+              <div>
                 <div className="text-2xl font-light text-primary-foreground">5+</div>
                 <div className="text-xs font-mono text-primary-foreground/60 uppercase tracking-widest">
                   Years
                 </div>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="interactive-hover"
-              >
+              </div>
+              <div>
                 <div className="text-2xl font-light text-primary-foreground">50+</div>
                 <div className="text-xs font-mono text-primary-foreground/60 uppercase tracking-widest">
                   Projects
                 </div>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="interactive-hover"
-              >
+              </div>
+              <div>
                 <div className="text-2xl font-light text-primary-foreground">15+</div>
                 <div className="text-xs font-mono text-primary-foreground/60 uppercase tracking-widest">
                   Clients
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
             
-            <motion.p 
-              className="text-sm font-light text-primary-foreground/70 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-            >
-              <TextReveal delay={1.2}>
-                Building tomorrow's technology with today's vision. Specializing in modern web applications, AI integration, and seamless user experiences.
-              </TextReveal>
-            </motion.p>
+            <p className="text-sm font-light text-primary-foreground/70 leading-relaxed">
+              Building tomorrow's technology with today's vision. 
+              Specializing in modern web applications, AI integration, 
+              and seamless user experiences.
+            </p>
           </div>
         </motion.div>
       </div>

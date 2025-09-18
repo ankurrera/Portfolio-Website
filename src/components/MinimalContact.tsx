@@ -138,17 +138,12 @@ const MinimalContact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Card className="glass-card">
+            <Card className="minimal-card bg-card/50">
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-4">
-                    <motion.div 
-                      className="space-y-2"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
-                    >
-                      <Label htmlFor="name" className="text-sm font-medium gradient-text">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="text-sm font-medium text-foreground">
                         Name
                       </Label>
                       <Input
@@ -157,18 +152,13 @@ const MinimalContact = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Your name"
-                        className="border-border/50 focus:border-border glass"
+                        className="border-border/50 focus:border-border bg-background/50"
                         required
                       />
-                    </motion.div>
+                    </div>
                     
-                    <motion.div 
-                      className="space-y-2"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <Label htmlFor="email" className="text-sm font-medium gradient-text">
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="text-sm font-medium text-foreground">
                         Email
                       </Label>
                       <Input
@@ -178,18 +168,13 @@ const MinimalContact = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="your@email.com"
-                        className="border-border/50 focus:border-border glass"
+                        className="border-border/50 focus:border-border bg-background/50"
                         required
                       />
-                    </motion.div>
+                    </div>
                     
-                    <motion.div 
-                      className="space-y-2"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      <Label htmlFor="message" className="text-sm font-medium gradient-text">
+                    <div className="space-y-2">
+                      <Label htmlFor="message" className="text-sm font-medium text-foreground">
                         Message
                       </Label>
                       <Textarea
@@ -199,24 +184,19 @@ const MinimalContact = () => {
                         onChange={handleInputChange}
                         placeholder="Tell me about your project..."
                         rows={6}
-                        className="border-border/50 focus:border-border glass resize-none"
+                        className="border-border/50 focus:border-border bg-background/50 resize-none"
                         required
                       />
-                    </motion.div>
+                    </div>
                   </div>
 
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  <Button 
+                    type="submit" 
+                    className="w-full"
+                    size="lg"
                   >
-                    <Button 
-                      type="submit" 
-                      className="w-full btn-glow"
-                      size="lg"
-                    >
-                      Send Message
-                    </Button>
-                  </motion.div>
+                    Send Message
+                  </Button>
                 </form>
 
                 <div className="mt-6 p-4 rounded-lg bg-muted/30 border border-border/30">

@@ -90,23 +90,19 @@ const MinimalAbout = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <Card className="glass-card hover:glass-card transition-all duration-300">
+                  <Card className="minimal-card bg-card/50 hover:bg-card transition-all duration-300">
                     <CardContent className="p-6 space-y-4">
-                      <h4 className="text-sm font-medium gradient-text">
+                      <h4 className="text-sm font-medium text-foreground">
                         {skillGroup.category}
                       </h4>
                       <div className="space-y-2">
-                        {skillGroup.items.map((item, itemIndex) => (
-                          <motion.div 
+                        {skillGroup.items.map((item) => (
+                          <div 
                             key={item}
                             className="text-xs font-mono text-muted-foreground py-1"
-                            initial={{ opacity: 0, x: -10 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: itemIndex * 0.1 }}
-                            whileHover={{ x: 4, color: 'hsl(var(--foreground))' }}
                           >
                             {item}
-                          </motion.div>
+                          </div>
                         ))}
                       </div>
                     </CardContent>
