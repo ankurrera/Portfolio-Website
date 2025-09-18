@@ -63,8 +63,8 @@ All colors are HSL for consistent theming.
     --radius-full: 9999px;
     
     /* Typography */
-    --font-heading: 'Inter', 'Inter-Regular', system-ui, Arial, sans-serif;
-    --font-body: 'Inter', 'Inter-Regular', system-ui, Arial, sans-serif;
+    --font-heading: Inter, "Inter Placeholder", sans-serif;
+    --font-body: Inter, "Inter Placeholder", sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     
     /* Layout */
@@ -141,7 +141,7 @@ All colors are HSL for consistent theming.
   
   /* Typography Hierarchy */
   .text-display {
-    font-size: clamp(3rem, 8vw, 8rem);
+    font-size: clamp(3rem, 8vw, 13.5rem);
     font-weight: 300;
     line-height: 0.9;
     letter-spacing: -0.02em;
