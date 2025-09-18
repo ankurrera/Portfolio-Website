@@ -63,8 +63,8 @@ All colors are HSL for consistent theming.
     --radius-full: 9999px;
     
     /* Typography */
-    --font-heading: "Inter", "Inter-Regular", system-ui, Arial, sans-serif;
-    --font-body: "Inter", "Inter-Regular", system-ui, Arial, sans-serif;
+    --font-heading: 'Inter', 'Inter-Regular', system-ui, Arial, sans-serif;
+    --font-body: 'Inter', 'Inter-Regular', system-ui, Arial, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     
     /* Layout */
@@ -111,22 +111,6 @@ All colors are HSL for consistent theming.
 }
 
 @layer components {
-  /* Glassmorphic UI Effects */
-  .glass-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s ease-out;
-  }
-  
-  .glass-card:hover {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15);
-    transform: translateY(-4px);
-  }
-
   /* Clean Card Style */
   .minimal-card {
     background: hsl(var(--card));
@@ -138,25 +122,6 @@ All colors are HSL for consistent theming.
   .minimal-card:hover {
     box-shadow: var(--hover-shadow);
     transform: translateY(-2px);
-  }
-
-  /* Modern Flex Layouts */
-  .flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .flex-between {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .flex-gap {
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
   
   /* Split Screen Layout */
@@ -225,49 +190,6 @@ All colors are HSL for consistent theming.
                       radial-gradient(circle at 40% 40%, hsl(0 0% 100% / 0.1) 2px, transparent 2px);
     background-size: 200px 200px, 300px 300px, 150px 150px;
   }
-
-  /* Animation Utilities */
-  .animate-spin-slow {
-    animation: __framer-loading-spin 3s linear infinite;
-  }
-  
-  .animate-text-reveal {
-    animation: textReveal 0.6s ease-out;
-  }
-  
-  .animate-slide-in-right {
-    animation: slideInRight 0.4s ease-out;
-  }
-  
-  .animate-scale-in {
-    animation: scaleIn 0.3s ease-out;
-  }
-
-  /* Transition Utilities */
-  .transition-opacity {
-    transition: opacity 0.4s ease-out;
-  }
-  
-  .transition-transform {
-    transition: transform 0.3s ease-out;
-  }
-  
-  .transition-all {
-    transition: all 0.4s ease-out;
-  }
-
-  /* Responsive Grid Utilities */
-  .grid-responsive {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-
-  @media (min-width: 768px) {
-    .grid-responsive {
-      gap: 2rem;
-    }
-  }
 }
 
 @keyframes fadeIn {
@@ -289,48 +211,5 @@ All colors are HSL for consistent theming.
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* Framer-style Animations */
-@keyframes __framer-loading-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes textReveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }
