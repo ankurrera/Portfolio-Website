@@ -63,8 +63,8 @@ All colors are HSL for consistent theming.
     --radius-full: 9999px;
     
     /* Typography */
-    --font-heading: 'Inter', 'Inter-Regular', system-ui, Arial, sans-serif;
-    --font-body: 'Inter', 'Inter-Regular', system-ui, Arial, sans-serif;
+    --font-heading: "Inter", "Inter-Regular", system-ui, Arial, sans-serif;
+    --font-body: "Inter", "Inter-Regular", system-ui, Arial, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     
     /* Layout */
