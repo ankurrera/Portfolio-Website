@@ -7,8 +7,8 @@ interface AuthContextType {
   session: Session | null;
   isAdmin: boolean;
   loading: boolean;
-  signIn: (email: string, password: string) => Promise<{ error: any }>;
-  signUp: (email: string, password: string) => Promise<{ error: any }>;
+  signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 }
 
@@ -85,15 +85,36 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       email,
       password,
     });
-    return { error };
+    return { error: error || null };
   };
 
   const signUp = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
-    return { error };
+    
+    if (error) {
+      return { error };
+    }
+
+    // If signup is successful and user is created, add them to admin_users table
+    if (data.user) {
+      const { error: adminError } = await supabase
+        .from('admin_users')
+        .insert({
+          id: data.user.id,
+          email: data.user.email || email
+        });
+      
+      if (adminError) {
+        console.error('Failed to create admin user:', adminError);
+        // Note: We don't return this error to avoid confusing the user
+        // The auth user was created successfully, they just won't be admin yet
+      }
+    }
+    
+    return { error: null };
   };
 
   const signOut = async () => {
