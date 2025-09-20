@@ -11,7 +11,8 @@ const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, signOut, isAdmin, user } = useAuth();
+  const [promotingToAdmin, setPromotingToAdmin] = useState(false);
+  const { signIn, signOut, isAdmin, user, promoteToAdmin } = useAuth();
   const { toast } = useToast();
 
   // Handle case where user authenticates but isn't admin
@@ -28,6 +29,28 @@ const AdminLogin = () => {
   if (user && isAdmin) {
     return <Navigate to="/admin" replace />;
   }
+
+  const handlePromoteToAdmin = async () => {
+    setPromotingToAdmin(true);
+    
+    const { error } = await promoteToAdmin();
+    
+    if (error) {
+      toast({
+        title: "Promotion Failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Success",
+        description: "You have been promoted to admin successfully!",
+        variant: "default",
+      });
+    }
+    
+    setPromotingToAdmin(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,6 +121,18 @@ const AdminLogin = () => {
                   <p className="text-sm text-muted-foreground">
                     Signed in as: {user.email}
                   </p>
+                  <p className="text-sm text-orange-600 mb-2">
+                    You are authenticated but don't have admin access.
+                  </p>
+                  <Button 
+                    variant="default" 
+                    size="sm" 
+                    onClick={handlePromoteToAdmin}
+                    disabled={promotingToAdmin}
+                    className="w-full mb-2"
+                  >
+                    {promotingToAdmin ? 'Promoting...' : 'Request Admin Access'}
+                  </Button>
                   <Button 
                     variant="outline" 
                     size="sm" 
