@@ -24,12 +24,12 @@ const MinimalHero = () => {
         delay: 0.2
       }} className="space-y-8">
           <div className="space-y-4">
-            <div className="text-xs font-mono tracking-widest text-muted-foreground uppercase">FULL STACK WEB DEVELOPER</div>
-            <h1 className="text-display font-heading text-foreground mx-0 my-[27px] px-0 text-9xl font-semibold">Ankur</h1>
+            <div className="text-xs font-mono tracking-widest text-muted-foreground uppercase font-bold">FULL STACK WEB DEVELOPER</div>
+            <h1 className="text-display font-heading text-foreground mx-0 my-[27px] px-0 text-9xl font-bold">Ankur</h1>
           </div>
           
           <div className="space-y-6">
-            <p className="text-lg font-light text-muted-foreground max-w-md leading-relaxed">
+            <p className="text-lg font-bold text-muted-foreground max-w-md leading-relaxed">
               Crafting digital experiences with precision, creativity, and a passion for clean code.
             </p>
             
@@ -63,7 +63,7 @@ const MinimalHero = () => {
         delay: 0.4
       }} className="text-right space-y-8 max-w-md">
           <div className="space-y-4">
-            <h2 className="text-hero font-heading text-primary-foreground text-5xl font-light">
+            <h2 className="text-hero font-heading text-primary-foreground text-5xl font-bold">
               Creative
               <br />
               Solutions
@@ -73,26 +73,26 @@ const MinimalHero = () => {
           <div className="space-y-6">
             <div className="grid grid-cols-3 gap-8 text-center">
               <div>
-                <div className="text-2xl font-light text-primary-foreground">5+</div>
-                <div className="text-xs font-mono text-primary-foreground/60 uppercase tracking-widest">
+                <div className="text-2xl font-bold text-primary-foreground">5+</div>
+                <div className="text-xs font-mono font-bold text-primary-foreground/60 uppercase tracking-widest">
                   Years
                 </div>
               </div>
               <div>
-                <div className="text-2xl font-light text-primary-foreground">50+</div>
-                <div className="text-xs font-mono text-primary-foreground/60 uppercase tracking-widest">
+                <div className="text-2xl font-bold text-primary-foreground">50+</div>
+                <div className="text-xs font-mono font-bold text-primary-foreground/60 uppercase tracking-widest">
                   Projects
                 </div>
               </div>
               <div>
-                <div className="text-2xl font-light text-primary-foreground">15+</div>
-                <div className="text-xs font-mono text-primary-foreground/60 uppercase tracking-widest">
+                <div className="text-2xl font-bold text-primary-foreground">15+</div>
+                <div className="text-xs font-mono font-bold text-primary-foreground/60 uppercase tracking-widest">
                   Clients
                 </div>
               </div>
             </div>
             
-            <p className="text-sm font-light text-primary-foreground/70 leading-relaxed">
+            <p className="text-sm font-bold text-primary-foreground/70 leading-relaxed">
               Building tomorrow's technology with today's vision. 
               Specializing in modern web applications, AI integration, 
               and seamless user experiences.
