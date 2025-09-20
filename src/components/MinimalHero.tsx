@@ -92,7 +92,7 @@ const MinimalHero = () => {
               </div>
             </div>
             
-            <p className="text-sm font-bold text-primary-foreground/70 leading-relaxed">
+            <p className="text-sm text-primary-foreground/70 leading-relaxed font-semibold">
               Building tomorrow's technology with today's vision. 
               Specializing in modern web applications, AI integration, 
               and seamless user experiences.
