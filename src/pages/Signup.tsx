@@ -7,28 +7,54 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 
-const AdminLogin = () => {
+const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, isAdmin, user } = useAuth();
+  const { signUp, user } = useAuth();
   const { toast } = useToast();
 
-  if (user && isAdmin) {
-    return <Navigate to="/admin" replace />;
+  if (user) {
+    return <Navigate to="/" replace />;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (password !== confirmPassword) {
+      toast({
+        title: "Password Mismatch",
+        description: "Passwords do not match. Please try again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (password.length < 6) {
+      toast({
+        title: "Password Too Short",
+        description: "Password must be at least 6 characters long.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLoading(true);
 
-    const { error } = await signIn(email, password);
+    const { error } = await signUp(email, password);
 
     if (error) {
       toast({
-        title: "Login Failed",
+        title: "Signup Failed",
         description: error.message,
         variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Signup Successful",
+        description: "Please check your email to confirm your account.",
+        variant: "default",
       });
     }
 
@@ -44,7 +70,8 @@ const AdminLogin = () => {
       >
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">Admin Login</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">Sign Up</CardTitle>
+            <p className="text-center text-muted-foreground">Create your account to get started</p>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -64,6 +91,17 @@ const AdminLogin = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  minLength={6}
+                />
+              </div>
+              <div>
+                <Input
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  minLength={6}
                 />
               </div>
               <Button 
@@ -71,14 +109,14 @@ const AdminLogin = () => {
                 className="w-full" 
                 disabled={loading}
               >
-                {loading ? 'Signing In...' : 'Sign In'}
+                {loading ? 'Creating Account...' : 'Sign Up'}
               </Button>
             </form>
             <div className="mt-4 text-center">
               <p className="text-sm text-muted-foreground">
-                Don't have an account?{' '}
-                <Link to="/signup" className="text-primary hover:underline">
-                  Sign up
+                Already have an account?{' '}
+                <Link to="/admin/login" className="text-primary hover:underline">
+                  Sign in
                 </Link>
               </p>
             </div>
@@ -89,4 +127,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default Signup;
