@@ -10,6 +10,7 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
+  promoteToAdmin: () => Promise<{ error: Error | null }>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -109,8 +110,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       
       if (adminError) {
         console.error('Failed to create admin user:', adminError);
-        // Note: We don't return this error to avoid confusing the user
-        // The auth user was created successfully, they just won't be admin yet
+        // Return the admin error so the user knows there was an issue
+        return { error: new Error(`Account created but admin access failed: ${adminError.message}. Please contact an administrator.`) };
       }
     }
     
@@ -121,6 +122,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     await supabase.auth.signOut();
   };
 
+  const promoteToAdmin = async () => {
+    if (!user) {
+      return { error: new Error('No authenticated user found') };
+    }
+
+    const { error } = await supabase
+      .from('admin_users')
+      .insert({
+        id: user.id,
+        email: user.email || ''
+      });
+
+    if (error) {
+      return { error: new Error(`Failed to promote to admin: ${error.message}`) };
+    }
+
+    // Refresh admin status
+    const { data: adminUser } = await supabase
+      .from('admin_users')
+      .select('id')
+      .eq('id', user.id)
+      .single();
+    
+    setIsAdmin(!!adminUser);
+    return { error: null };
+  };
+
   const value = {
     user,
     session,
@@ -129,6 +157,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     signIn,
     signUp,
     signOut,
+    promoteToAdmin,
   };
 
   return (
