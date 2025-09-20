@@ -29,7 +29,7 @@ const MinimalHero = () => {
           </div>
           
           <div className="space-y-6">
-            <p className="text-lg font-bold text-muted-foreground max-w-md leading-relaxed">
+            <p className="text-muted-foreground max-w-md leading-relaxed font-normal text-base">
               Crafting digital experiences with precision, creativity, and a passion for clean code.
             </p>
             
