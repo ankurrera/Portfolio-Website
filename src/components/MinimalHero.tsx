@@ -27,7 +27,7 @@ const MinimalHero = () => {
             <div className="text-xs font-mono tracking-widest text-muted-foreground uppercase">
               Full Stack Developer
             </div>
-            <h1 className="text-display font-heading font-light text-foreground mx-0 my-[27px] px-0 text-9xl">Ankur</h1>
+            <h1 className="text-display font-heading text-foreground mx-0 my-[27px] px-0 text-9xl font-semibold">Ankur</h1>
           </div>
           
           <div className="space-y-6">
@@ -65,7 +65,7 @@ const MinimalHero = () => {
         delay: 0.4
       }} className="text-right space-y-8 max-w-md">
           <div className="space-y-4">
-            <h2 className="text-hero font-heading font-light text-primary-foreground">
+            <h2 className="text-hero font-heading text-primary-foreground text-5xl font-light">
               Creative
               <br />
               Solutions
