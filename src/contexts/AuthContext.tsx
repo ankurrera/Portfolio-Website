@@ -57,9 +57,23 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     );
 
     // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
+      
+      if (session?.user) {
+        // Check if user is admin
+        const { data: adminUser } = await supabase
+          .from('admin_users')
+          .select('id')
+          .eq('id', session.user.id)
+          .single();
+        
+        setIsAdmin(!!adminUser);
+      } else {
+        setIsAdmin(false);
+      }
+      
       setLoading(false);
     });
 
