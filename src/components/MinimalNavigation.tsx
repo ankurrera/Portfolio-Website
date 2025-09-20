@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const MinimalNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,6 +65,11 @@ const MinimalNavigation = () => {
           <Button variant="minimal" size="sm">
             Resume
           </Button>
+          <Link to="/signup">
+            <Button variant="outline" size="sm">
+              Sign Up
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -98,6 +104,11 @@ const MinimalNavigation = () => {
             <Button variant="minimal" size="sm" className="mt-4">
               Resume
             </Button>
+            <Link to="/signup">
+              <Button variant="outline" size="sm" className="w-full">
+                Sign Up
+              </Button>
+            </Link>
           </div>
         </motion.div>
       )}
