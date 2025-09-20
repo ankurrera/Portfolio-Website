@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -11,8 +11,19 @@ const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, isAdmin, user } = useAuth();
+  const { signIn, signOut, isAdmin, user } = useAuth();
   const { toast } = useToast();
+
+  // Handle case where user authenticates but isn't admin
+  useEffect(() => {
+    if (user && !isAdmin && !loading) {
+      toast({
+        title: "Access Denied",
+        description: "You are not authorized to access the admin panel. Please contact an administrator.",
+        variant: "destructive",
+      });
+    }
+  }, [user, isAdmin, loading, toast]);
 
   if (user && isAdmin) {
     return <Navigate to="/admin" replace />;
@@ -29,6 +40,13 @@ const AdminLogin = () => {
         title: "Login Failed",
         description: error.message,
         variant: "destructive",
+      });
+    } else {
+      // Sign-in succeeded - show success message
+      toast({
+        title: "Authentication Successful",
+        description: "Checking admin permissions...",
+        variant: "default",
       });
     }
 
@@ -75,12 +93,28 @@ const AdminLogin = () => {
               </Button>
             </form>
             <div className="mt-4 text-center">
-              <p className="text-sm text-muted-foreground">
-                Don't have an account?{' '}
-                <Link to="/signup" className="text-primary hover:underline">
-                  Sign up
-                </Link>
-              </p>
+              {user && !isAdmin ? (
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">
+                    Signed in as: {user.email}
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={signOut}
+                    className="w-full"
+                  >
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">
+                  Don't have an account?{' '}
+                  <Link to="/signup" className="text-primary hover:underline">
+                    Sign up
+                  </Link>
+                </p>
+              )}
             </div>
           </CardContent>
         </Card>
