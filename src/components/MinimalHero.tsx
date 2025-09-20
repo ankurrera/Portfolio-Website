@@ -24,9 +24,7 @@ const MinimalHero = () => {
         delay: 0.2
       }} className="space-y-8">
           <div className="space-y-4">
-            <div className="text-xs font-mono tracking-widest text-muted-foreground uppercase">
-              Full Stack Developer
-            </div>
+            <div className="text-xs font-mono tracking-widest text-muted-foreground uppercase">FULL STACK WEB DEVELOPER</div>
             <h1 className="text-display font-heading text-foreground mx-0 my-[27px] px-0 text-9xl font-semibold">Ankur</h1>
           </div>
           

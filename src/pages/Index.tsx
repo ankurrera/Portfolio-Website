@@ -26,8 +26,9 @@ const Index = () => {
           }}>Ankur Bag</motion.div>
             
             <div className="flex items-center gap-8 text-xs font-mono text-muted-foreground">
-              <div>&copy; 2024 All rights reserved</div>
-              <div>Made with precision & passion</div>
+              <div>© 2025
+ All rights reserved</div>
+              <div>Making projects with precision & passion</div>
             </div>
           </div>
         </div>
