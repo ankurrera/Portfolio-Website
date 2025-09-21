@@ -17,7 +17,7 @@ const AdminLayout = () => {
   const { user, isAdmin, signOut } = useAuth();
 
   if (!user || !isAdmin) {
-    return <Navigate to="/admin/login" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   const navItems = [
