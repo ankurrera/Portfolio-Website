@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, NavLink, Navigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -9,13 +9,16 @@ import {
   FileText, 
   BarChart3, 
   Settings,
-  LogOut 
+  LogOut,
+  Menu,
+  X
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
 const AdminLayout = () => {
   const { user, isAdmin, signOut } = useAuth();
   const location = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   
   // Check for demo mode in the current URL or initial location
   const isDemoMode = location.search.includes('demo=true') || 
@@ -49,8 +52,23 @@ const AdminLayout = () => {
 
   return (
     <div className="min-h-screen bg-background flex">
+      {/* Mobile Menu Button */}
+      <div className="lg:hidden fixed top-4 left-4 z-50">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="bg-background"
+        >
+          {sidebarOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+        </Button>
+      </div>
+
       {/* Sidebar */}
-      <div className="w-64 bg-card border-r border-border">
+      <div className={`
+        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+        fixed lg:relative z-40 w-64 h-full bg-card border-r border-border transition-transform duration-300 ease-in-out
+      `}>
         <div className="p-6">
           <h2 className="text-xl font-bold">Admin Panel</h2>
           <p className="text-sm text-muted-foreground mt-1">Portfolio Management</p>
@@ -66,6 +84,7 @@ const AdminLayout = () => {
             <NavLink
               key={item.name}
               to={getDemoUrl(item.href)}
+              onClick={() => setSidebarOpen(false)} // Close mobile menu on navigation
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-2 rounded-md text-sm transition-colors ${
                   isActive
@@ -92,9 +111,17 @@ const AdminLayout = () => {
         </div>
       </div>
 
+      {/* Mobile Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8">
+      <div className="flex-1 overflow-auto lg:ml-0">
+        <div className="p-4 lg:p-8 pt-16 lg:pt-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

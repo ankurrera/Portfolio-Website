@@ -116,7 +116,7 @@ const SortableProjectCard: React.FC<SortableProjectCardProps> = ({
       </CardHeader>
       
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-2 gap-4 text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
           <div>
             <span className="font-medium">Start Date:</span> {formatDate(project.start_date)}
           </div>
@@ -135,8 +135,8 @@ const SortableProjectCard: React.FC<SortableProjectCardProps> = ({
           </div>
         )}
 
-        <div className="flex justify-between items-center pt-2">
-          <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-2">
+          <div className="flex flex-wrap gap-2">
             <Button
               size="sm"
               variant="outline"
@@ -158,7 +158,7 @@ const SortableProjectCard: React.FC<SortableProjectCardProps> = ({
             </Button>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Button
               size="sm"
               variant="outline"
@@ -480,15 +480,15 @@ const ProjectsAdmin = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Projects</h1>
-          <p className="text-muted-foreground mt-2">
+          <h1 className="text-2xl sm:text-3xl font-bold">Projects</h1>
+          <p className="text-muted-foreground mt-2 text-sm sm:text-base">
             Manage your portfolio projects and their display order. Drag projects to reorder them.
             {isDemoMode && <span className="text-yellow-600"> (Demo Mode - changes won't be saved)</span>}
           </p>
         </div>
-        <Button onClick={handleCreate} className="gap-2">
+        <Button onClick={handleCreate} className="gap-2 w-full sm:w-auto">
           <Plus className="w-4 h-4" />
           Add Project
         </Button>
