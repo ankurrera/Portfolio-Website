@@ -13,11 +13,12 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const { signIn, signUp, user } = useAuth();
+  const [formLoading, setFormLoading] = useState(false);
+  const { signIn, signUp, user, loading } = useAuth();
   const { toast } = useToast();
 
-  if (user) {
+  // Wait for auth to fully initialize before redirecting
+  if (user && !loading) {
     return <Navigate to="/admin" replace />;
   }
 
@@ -44,7 +45,7 @@ const Login = () => {
       }
     }
 
-    setLoading(true);
+    setFormLoading(true);
 
     const { error } = isSignUp ? await signUp(email, password) : await signIn(email, password);
 
@@ -64,7 +65,7 @@ const Login = () => {
       });
     }
 
-    setLoading(false);
+    setFormLoading(false);
   };
 
   return (
@@ -123,9 +124,9 @@ const Login = () => {
               <Button 
                 type="submit" 
                 className="w-full" 
-                disabled={loading}
+                disabled={formLoading}
               >
-                {loading ? (isSignUp ? 'Creating Account...' : 'Signing In...') : (isSignUp ? 'Create Account' : 'Sign In')}
+                {formLoading ? (isSignUp ? 'Creating Account...' : 'Signing In...') : (isSignUp ? 'Create Account' : 'Sign In')}
               </Button>
             </form>
             
