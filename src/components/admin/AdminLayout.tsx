@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet, NavLink, Navigate, useLocation } from 'react-router-dom';
+import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { 
@@ -9,46 +9,23 @@ import {
   FileText, 
   BarChart3, 
   Settings,
-  LogOut,
   Menu,
-  X
+  X,
+  Home
 } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
 
 const AdminLayout = () => {
-  const { user, isAdmin, signOut } = useAuth();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  
-  // Check for demo mode in the current URL or initial location
-  const isDemoMode = location.search.includes('demo=true') || 
-                     location.pathname.includes('demo') ||
-                     sessionStorage.getItem('demoMode') === 'true';
-
-  // Set demo mode in session storage for persistence
-  React.useEffect(() => {
-    if (location.search.includes('demo=true')) {
-      sessionStorage.setItem('demoMode', 'true');
-    }
-  }, [location.search]);
-
-  // Allow demo mode access
-  if (!isDemoMode && (!user || !isAdmin)) {
-    return <Navigate to="/login" replace />;
-  }
 
   const navItems = [
-    { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-    { name: 'Projects', href: '/admin/projects', icon: FolderOpen },
-    { name: 'Case Studies', href: '/admin/case-studies', icon: BookOpen },
-    { name: 'Resume', href: '/admin/resume', icon: FileText },
-    { name: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
-    { name: 'Settings', href: '/admin/settings', icon: Settings },
+    { name: 'Dashboard', href: '/ankuradminpanel', icon: LayoutDashboard },
+    { name: 'Projects', href: '/ankuradminpanel/projects', icon: FolderOpen },
+    { name: 'Case Studies', href: '/ankuradminpanel/case-studies', icon: BookOpen },
+    { name: 'Resume', href: '/ankuradminpanel/resume', icon: FileText },
+    { name: 'Analytics', href: '/ankuradminpanel/analytics', icon: BarChart3 },
+    { name: 'Settings', href: '/ankuradminpanel/settings', icon: Settings },
   ];
-
-  const getDemoUrl = (href: string) => {
-    return isDemoMode ? `${href}?demo=true` : href;
-  };
 
   return (
     <div className="min-h-screen bg-background flex">
@@ -72,18 +49,13 @@ const AdminLayout = () => {
         <div className="p-6">
           <h2 className="text-xl font-bold">Admin Panel</h2>
           <p className="text-sm text-muted-foreground mt-1">Portfolio Management</p>
-          {isDemoMode && (
-            <div className="mt-2 p-2 bg-yellow-100 border border-yellow-300 rounded text-xs text-yellow-800">
-              Demo Mode - Changes won't be saved
-            </div>
-          )}
         </div>
 
         <nav className="px-4 space-y-2">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
-              to={getDemoUrl(item.href)}
+              to={item.href}
               onClick={() => setSidebarOpen(false)} // Close mobile menu on navigation
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-2 rounded-md text-sm transition-colors ${
@@ -103,10 +75,10 @@ const AdminLayout = () => {
           <Button
             variant="ghost"
             className="w-full justify-start gap-3"
-            onClick={signOut}
+            onClick={() => window.location.href = '/'}
           >
-            <LogOut className="w-4 h-4" />
-            Sign Out
+            <Home className="w-4 h-4" />
+            Back to Site
           </Button>
         </div>
       </div>
