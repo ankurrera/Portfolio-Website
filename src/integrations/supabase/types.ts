@@ -14,7 +14,199 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      analytics: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          page_path: string | null
+          project_id: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          page_path?: string | null
+          project_id?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          page_path?: string | null
+          project_id?: string | null
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      case_studies: {
+        Row: {
+          challenges: string | null
+          content: string
+          created_at: string
+          id: string
+          project_id: string | null
+          results: string | null
+          solutions: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          challenges?: string | null
+          content: string
+          created_at?: string
+          id?: string
+          project_id?: string | null
+          results?: string | null
+          solutions?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          challenges?: string | null
+          content?: string
+          created_at?: string
+          id?: string
+          project_id?: string | null
+          results?: string | null
+          solutions?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "case_studies_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          created_at: string
+          description: string
+          display_order: number | null
+          finish_date: string | null
+          github_url: string | null
+          id: string
+          is_archived: boolean | null
+          is_featured: boolean | null
+          live_url: string | null
+          start_date: string | null
+          technologies: string[] | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          display_order?: number | null
+          finish_date?: string | null
+          github_url?: string | null
+          id?: string
+          is_archived?: boolean | null
+          is_featured?: boolean | null
+          live_url?: string | null
+          start_date?: string | null
+          technologies?: string[] | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          display_order?: number | null
+          finish_date?: string | null
+          github_url?: string | null
+          id?: string
+          is_archived?: boolean | null
+          is_featured?: boolean | null
+          live_url?: string | null
+          start_date?: string | null
+          technologies?: string[] | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      resume: {
+        Row: {
+          download_count: number | null
+          file_name: string
+          file_url: string
+          id: string
+          uploaded_at: string
+        }
+        Insert: {
+          download_count?: number | null
+          file_name: string
+          file_url: string
+          id?: string
+          uploaded_at?: string
+        }
+        Update: {
+          download_count?: number | null
+          file_name?: string
+          file_url?: string
+          id?: string
+          uploaded_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          created_at: string
+          email: string | null
+          github_url: string | null
+          id: string
+          linkedin_url: string | null
+          meta_description: string | null
+          meta_title: string | null
+          og_image_url: string | null
+          twitter_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          og_image_url?: string | null
+          twitter_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          og_image_url?: string | null
+          twitter_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
